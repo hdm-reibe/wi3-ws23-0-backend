@@ -1,0 +1,1 @@
+from . import shortened_urls
