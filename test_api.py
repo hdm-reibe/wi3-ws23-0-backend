@@ -57,7 +57,8 @@ def test_create_shortened_url(key: str, url: str) -> str:
         headers={"x-api-key": API_KEY},  # we need to pass the API key
         json={
             "shortId": key,
-            "url": url},
+            "url": url
+        },
     )
 
     logger.debug(f"Response Status Code: {response.status_code}")

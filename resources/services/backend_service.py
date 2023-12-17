@@ -48,7 +48,15 @@ class BackendService(Construct):
         )
 
         # add shortened urls resource
-        res_short_id = restapi.root.add_resource("{shortId}")
+        res_short_id = restapi.root.add_resource(
+            "{shortId}",
+            default_cors_preflight_options=apigateway.CorsOptions(
+                allow_origins=apigateway.Cors.ALL_ORIGINS,
+                allow_methods=apigateway.Cors.ALL_METHODS,
+                allow_headers=apigateway.Cors.DEFAULT_HEADERS,
+            )
+        )
+
         res_short_id.add_method(
             "GET",
             integration=apigateway.AwsIntegration(
@@ -160,7 +168,15 @@ class BackendService(Construct):
         )
 
         # add list shortened urls resource GET /shortened-urls
-        res_shortened_urls = restapi.root.add_resource("shortened-urls")
+        res_shortened_urls = restapi.root.add_resource(
+            "shortened-urls",
+            default_cors_preflight_options=apigateway.CorsOptions(
+                allow_origins=apigateway.Cors.ALL_ORIGINS,
+                allow_methods=apigateway.Cors.ALL_METHODS,
+                allow_headers=apigateway.Cors.DEFAULT_HEADERS,
+            )
+        )
+
         res_shortened_urls.add_method(
             "GET",
             api_key_required=True,
